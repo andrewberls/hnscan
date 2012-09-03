@@ -1,0 +1,69 @@
+body {
+  color: #404040;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+.container {
+  padding: 10px;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.about {
+  color: #7C7C7C;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+a:link,
+a:visited {
+  color: #08c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #222;
+  text-decoration: underline;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+  form p {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+input:not([type='checkbox']) {
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 5px;
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box
+}
+
+.item {
+  color: #08c;
+  display: block;
+  margin-bottom: 15px;
+}
+
+footer {
+  color: #7C7C7C;
+  margin: 40px 0 20px;
+}
+
+@media(max-width: 630px) {
+  input:not([type='checkbox']) {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
