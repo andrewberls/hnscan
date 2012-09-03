@@ -6,3 +6,4 @@ gem "listen", "~> 0.4.7"
 
 gem 'sinatra'
 gem 'thin'
+gem 'heroku'
