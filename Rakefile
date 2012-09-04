@@ -4,14 +4,15 @@
 require 'uglifier'
 require 'listen'
 
-SRC_PATH   = 'public/js/'   # Path to source files
-BUILD_PATH = './build' # All individual coffeescript files are compiled to indiv. js files in this path
-DIST_PATH  = 'public/js/app'  # Produces kona.js and kona.min.js in this path
+SRC_PATH    = 'src/'          # Path to source files
+VENDOR_PATH = 'vendor/'       # Path to vendor plugins
+BUILD_PATH  = 'public/js'     # All individual coffeescript files are compiled to indiv. js files in this path
+DIST_PATH   = 'public/js/app' # Produces app.min.js in this path
 
 VENDOR_FILENAMES = [
   # Hack here to support plain JS files
-  'public/base64',
-  'public/jquery.cookie'
+  'base64',
+  'jquery.cookie'
 ]
 
 FILENAMES = [
@@ -42,7 +43,7 @@ task :build do
     puts "Compiled successfully."
     js = []
     js << VENDOR_FILENAMES.map do |file|
-      IO.read File.join(SRC_PATH, File.basename("#{file}.js"))
+      IO.read File.join(VENDOR_PATH, File.basename("#{file}.js"))
     end
 
     js << FILENAMES.map do |file|
@@ -53,13 +54,13 @@ task :build do
 
     # Minify and write concatenated dist files
     minjs = Uglifier.new.compile(js)
-    File.open("#{DIST_PATH}.js", 'w') { |f| f.write(js) }
     File.open("#{DIST_PATH}.min.js", 'w') { |f| f.write(minjs) }
   else
     # Send a growl notification on failure if enabled
     system "growlnotify -m 'An error occured while compiling!' 2>/dev/null"
   end
 end
+
 
 # Watch and wait for changes, then call `rake build` to compile the changes
 desc 'Waits for changes to files, then recompiles.'
@@ -72,6 +73,7 @@ task :watch do
     system 'rake build'
   end
 end
+
 
 desc 'Remove all files in the build directory'
 task :clean do
